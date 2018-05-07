@@ -240,17 +240,6 @@ A = torch.randn([3, 300, 300, 10], dtype=torch.double)
         number=500,
         repeat=20)
 
-tc.measure(test_name='torch.contiguousTriGAMMA',
-        stmt='''
-y = A.trigamma()
-''',
-        setup='''
-import torch
-A = torch.randn([3, 5000, 5000, 10], dtype=torch.double)
-''',
-        number=500,
-        repeat=20)
-
 tc.measure(test_name='torch.contiguousLog1p',
         stmt='''
 y = A.log1p()
@@ -430,6 +419,61 @@ A = torch.randn([3, 300, 300, 10], dtype=torch.double)
 tc.measure(test_name='torch.contiguousFloor',
         stmt='''
 y = A.floor()
+''',
+        setup='''
+import torch
+A = torch.randn([3, 300, 300, 10], dtype=torch.double)
+''',
+        number=500,
+        repeat=20)
+
+tc.measure(test_name='torch.contiguousRound',
+        stmt='''
+y = A.round()
+''',
+        setup='''
+import torch
+A = torch.randn([3, 300, 300, 10], dtype=torch.double)
+''',
+        number=500,
+        repeat=20)
+
+tc.measure(test_name='torch.contiguousAbs',
+        stmt='''
+y = A.abs()
+''',
+        setup='''
+import torch
+A = torch.randn([3, 300, 300, 10], dtype=torch.double)
+''',
+        number=500,
+        repeat=20)
+
+tc.measure(test_name='torch.contiguousTrunc',
+        stmt='''
+y = A.trunc()
+''',
+        setup='''
+import torch
+A = torch.randn([3, 300, 300, 10], dtype=torch.double)
+''',
+        number=500,
+        repeat=20)
+
+tc.measure(test_name='torch.contiguousFrac',
+        stmt='''
+y = A.frac()
+''',
+        setup='''
+import torch
+A = torch.randn([3, 300, 300, 10], dtype=torch.double)
+''',
+        number=500,
+        repeat=20)
+
+tc.measure(test_name='torch.contiguousCinv',
+        stmt='''
+y = 1.0 / A
 ''',
         setup='''
 import torch
