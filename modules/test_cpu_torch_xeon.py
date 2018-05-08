@@ -482,3 +482,17 @@ A = torch.randn([3, 300, 300, 10], dtype=torch.double)
         number=500,
         repeat=20)
 
+tc.measure(test_name='torch.contiguousConv2D',
+        stmt='''
+output = net(data)
+''',
+        setup='''
+import torch
+import torch.nn as nn
+from torch_nn_models import Conv2D
+data = torch.randn(1,3,512,512)
+net = Conv2D()
+''',
+        number=500,
+        repeat=20)
+
