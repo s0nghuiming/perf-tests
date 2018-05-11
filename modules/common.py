@@ -57,13 +57,16 @@ class PerfTestCase():
         #     runtimes += [timeit.timeit(stmt=stmt, setup=setup, number=number)]
 
         # Measure using time.process_time()
-        for i in range(repeat):
-            exec(setup)
-            start_time = process_time()
-            for i in range(number):
-                exec(stmt)
-            elapsed_time = process_time() - start_time
-            runtimes += [elapsed_time]
+        try:
+            for i in range(repeat):
+                exec(setup)
+                start_time = process_time()
+                for i in range(number):
+                    exec(stmt)
+                elapsed_time = process_time() - start_time
+                runtimes += [elapsed_time]
+        except:
+            print("Unexcepted error: ", test_name)
 
         sample_mean = numpy.mean(runtimes)
         sample_sigma = numpy.std(runtimes)
