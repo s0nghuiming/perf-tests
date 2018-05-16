@@ -65,8 +65,8 @@ class PerfTestCase():
                     exec(stmt)
                 elapsed_time = process_time() - start_time
                 runtimes += [elapsed_time]
-        except:
-            print("Unexcepted error: ", test_name)
+        except Exception as err:
+            print("Unexcepted error: {} {}".format(test_name, err))
 
         sample_mean = numpy.mean(runtimes)
         sample_sigma = numpy.std(runtimes)
@@ -98,7 +98,7 @@ z-value >= {} in all {} trials, there is perf regression.\n
             if not test_name in self.update_data:
                 self.update_data[test_name] = {}
             self.update_data[test_name]['mean'] = sample_mean
-            #self.update_data[test_name]['sigma'] = max(sample_sigma, sample_mean * 0.1) # Allow a larger margin
-            self.update_data[test_name]['sigma'] = sample_sigma
+            self.update_data[test_name]['sigma'] = max(sample_sigma, sample_mean * 0.1) # Allow a larger margin
+            #self.update_data[test_name]['sigma'] = sample_sigma
             with open(self.args.update_data_file_path, 'w') as update_data_file:
                 json.dump(self.update_data, update_data_file, indent=4)

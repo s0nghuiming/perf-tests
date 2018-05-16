@@ -11,6 +11,7 @@ class Conv2D(nn.Module):
         x = self.conv1(x)
         return x
 
+
 if __name__ == "__main__":
     data = torch.randn(16,3,1024,1024)
     net = Conv2D()
