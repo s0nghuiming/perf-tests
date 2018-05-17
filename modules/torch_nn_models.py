@@ -5,7 +5,7 @@ from time import process_time, time
 class Conv2D(nn.Module):
     def __init__(self):
         super(Conv2D, self).__init__()
-        self.conv1 = nn.Conv2d(3, 20, 5, stride=(2,2))
+        self.conv1 = nn.Conv2d(16, 16, 5, stride=(2,2))
 
     def forward(self, x):
         x = self.conv1(x)
@@ -13,7 +13,7 @@ class Conv2D(nn.Module):
 
 
 if __name__ == "__main__":
-    data = torch.randn(16,3,1024,1024)
+    data = torch.randn(1,16,1024,1024)
     net = Conv2D()
     t1 = process_time()
     for i in range(20):
